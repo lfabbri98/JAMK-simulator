@@ -31,7 +31,7 @@ def nucleation_3D(matrix, params, positions_nuclei, num_nuclei):
             if is_all_full(internal_matrix, params):
                 break
             continue
-        internal_matrix[new_position_1, new_position_2, new_postion_2] = 1
+        internal_matrix[new_position_1, new_position_2, new_position_3] = 1
         positions_nuclei[num_nuclei] = [new_position_1, new_position_2, new_position_3]
         num_cycled = num_cycled+1
         num_nuclei = num_nuclei+1

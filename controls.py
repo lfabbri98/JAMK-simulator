@@ -11,7 +11,7 @@ def input_control(data):
             return True
         
     #n can be only 2 or 3 -> physical reason
-    if not (int(data[1])==2 or int(data[1]==3)):
+    if not (int(data[1])==2 or int(data[1])==3):
         print("You put a wrong n.")
         return True
     
