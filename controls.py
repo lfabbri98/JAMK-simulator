@@ -9,13 +9,15 @@ def input_control(data):
         except:
             print("Attention! You inserted some non integer parameters! Please retry and be more careful!")
             return True
-
+        
+    #n can be only 2 or 3 -> physical reason
     if not (int(data[1])==2 or int(data[1]==3)):
         print("You put a wrong n.")
         return True
     
     return False
 
+#this function controls if the matrix if all full
 def is_all_full(is_full_matrix, params):
         
     if params[1] == 2:
