@@ -17,7 +17,7 @@ The user is asked to provide four different parameters:
 matrix dimension N, dimensionality of the process n, nucleation rate J, growth velocity R. The phase transition is modelled as happening on a matrix that will be as big as N, 
 depending on dimensionality n. For example, if one chooses N=1000 and n=2 then a bidimensional matrix with 1000x1000 cells will be created. Each cell can be empty or filled 
 with a single hydrogen atom. At each instant of time J new domains will be created randomly inside the matrix 
-(domains’ positions will be generated according to a uniform distribution) and already present domains will grow in each direction with velocity R So if, for example, R=2 then each domain will grow of 2 hydrogen atoms in each direction per unit time. 
+(domains’ positions will be generated according to a uniform distribution) and already present domains will grow in each direction with velocity R. So if, for example, R=2 then each domain will grow of 2 hydrogen atoms in each direction per unit time. 
 The case considered is only the one with constant R and constant nucleation rate J. This means that expected d is d = 1+n.
 
 ## Usage
