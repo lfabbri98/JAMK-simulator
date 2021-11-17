@@ -11,11 +11,7 @@ This kind of process can be nicely described by Johnson-Mehl-Avrami-Kolmogorov k
 where **eta** is the fraction of transformed domain, **n** is a parameter that depends on dimensionality (1D/2D/3D) and **k** is a constant. 
 Further information on JMAK kinetics can be found in [1], [2].
 
-## Model and parameters
-
-This program uses a graphical interface that asks the user to insert initial parameters of simulation.
-
-![start](https://github.com/lfabbri98/Images/blob/main/startpage.png)
+## Usage
 
 The user is asked to provide four different parameters: 
 matrix dimension N, dimensionality of the process n, nucleation rate J, growth velocity R. The phase transition is modelled as happening on a matrix that will be as big as N, 
@@ -26,7 +22,7 @@ The case considered is only the one with constant R and constant nucleation rate
 
 ## Usage
 
-To start the program simply run file **main.py**. Once the user has provided all the parameters, then press *Start Simulation* to launch the process. Otherwise, press *Exit* to terminate the program.
+To start the program simply run file **main.py**.
 **Attention! All parameters must be integers. The program is provided of a control on user input. Be aware that non-integer parameters have no physical meaning.**
 
 ## Structure of the project
