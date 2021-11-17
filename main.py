@@ -1,14 +1,10 @@
 #This is main file, starting point
 
 #including libraries
-import PySimpleGUI as sg
 from start import *
 from controls import *
-import pytest
 from JMAK import *
-import time
 import matplotlib.pyplot as plt
-import os
 
 ###############################################################################
 #INITIALIZATION OF PARAMETERS
