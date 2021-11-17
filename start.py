@@ -35,5 +35,9 @@ def system_creation(params):
    
    return matrix 
 
-    
+
+"""Generates the table to store all positions about nuclei"""
+def generate_pos_table(params):
+    table = np.zeros((params[0]**params[1],params[1]))
+    return table
         
