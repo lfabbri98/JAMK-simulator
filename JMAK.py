@@ -61,5 +61,36 @@ def growth_2D(matrix, params, positions_nuclei, num_nuclei):
                     num_nuclei = num_nuclei+1
     return [matrix, positions_nuclei, num_nuclei]
 
+def growth_3D(matrix, params, positions_nuclei, num_nuclei):
+    for q in range(0,num_nuclei):
+        for w in range(-params[3], params[3]+1):
+            for s in range(-params[3], params[3]+1):
+                for t in range(-params[3], params[3]+1):
+                    
+                    x = positions_nuclei[q,0] + w
+                    y = positions_nuclei[q,1] + s
+                    z = positions_nuclei[q,2] + t
+                
+                #controls for segmentantion fault
+                if x>params[0]:
+                    x = abs(params[0]-x)
+                if x<0:
+                    x = params[0] - abs(1-x)
+                if y>params[0]:
+                    y = abs(params[0]-y)
+                if y<0:
+                    y = params[0] - abs(1-y)  
+                if z>params[0]:
+                    z = abs(params[0]-z)
+                if z<0:
+                    z = params[0] - abs(1-z)  
+                
+                if matrix[int(x)-1,int(y)-1, int(z)-1] == 0:
+                    matrix[int(x)-1,int(y)-1,int(z)-1] = 1
+                    positions_nuclei[num_nuclei] = [x,y,z]
+                    num_nuclei = num_nuclei+1
+    return [matrix, positions_nuclei, num_nuclei]
+
+
  
     
