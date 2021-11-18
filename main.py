@@ -29,6 +29,7 @@ while number_domains < init_data[0]**init_data[1]:
     #2D case
     if init_data[1] == 2:
         matrix, domain_coordinates, number_domains = nucleation_2D(matrix, init_data, domain_coordinates, number_domains)
+        matrix, domain_coordinates, number_domains = growth_2D(matrix, init_data, domain_coordinates, number_domains)
         
     #3D case
     elif init_data[1] == 3:
@@ -37,7 +38,7 @@ while number_domains < init_data[0]**init_data[1]:
     t = t+1 #increase time after each step
     table_filled_fraction[counter_table] = [t,number_domains/init_data[0]**init_data[1]] #update filling fraction
     counter_table = counter_table+1
-    print("Progession: ",round(number_domains/init_data[0]**init_data[1]*100,3),"%" )
+    print("Progession: ",round(number_domains/init_data[0]**init_data[1]*100,2),"%" )
     
     
         
