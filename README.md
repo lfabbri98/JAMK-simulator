@@ -28,6 +28,8 @@ To start the program simply run file **main.py**.
 After the simulation (it can require much time, depending on your input paramters)
 a plot of JMAK kinetic is saved into the folder *Outputs*, named with date and time of execution.
 
+**PLEASE BE SURE TO CREATE THE FOLDER *Outputs* BEFORE RUNNING THE PROGRAM**
+
 ## Structure of the project
 
 This project is divided into many files:

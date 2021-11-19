@@ -28,12 +28,14 @@ while number_domains/init_data[0]**init_data[1] < 1:
     
     #2D case
     if init_data[1] == 2:
-        matrix, domain_coordinates, number_domains = nucleation_2D(matrix, init_data, domain_coordinates, number_domains)
+        if init_data[2] < init_data[0]**init_data[1] - number_domains:
+            matrix, domain_coordinates, number_domains = nucleation_2D(matrix, init_data, domain_coordinates, number_domains)
         matrix, domain_coordinates, number_domains = growth_2D(matrix, init_data, domain_coordinates, number_domains)
         
     #3D case
     elif init_data[1] == 3:
-        matrix, domain_coordinates, number_domains = nucleation_3D(matrix, init_data, domain_coordinates, number_domains)
+        if init_data[2] < init_data[0]**init_data[1] - number_domains:
+            matrix, domain_coordinates, number_domains = nucleation_3D(matrix, init_data, domain_coordinates, number_domains)
         matrix, domain_coordinates, number_domains = growth_3D(matrix, init_data, domain_coordinates, number_domains)
         
     t = t+1 #increase time after each step
