@@ -4,7 +4,6 @@
 from start import *
 from controls import *
 from JMAK import *
-import matplotlib.pyplot as plt
 
 ###############################################################################
 #INITIALIZATION OF PARAMETERS
@@ -19,7 +18,7 @@ for x in range(4):
 ###############################################################################
 matrix = system_creation(init_data)
 t = 0 #time counter
-domain_coordinates = generate_pos_table(init_data) #table with coordinated of all points
+domain_coordinates = generate_pos_table(init_data) #table with coordinates of all points
 number_domains = 0 #domains counter
 table_filled_fraction = np.zeros((init_data[0]**init_data[1],2)) #table with filled fraction in function of time
 counter_table = 0 #counter for filling previous table
@@ -37,7 +36,7 @@ while number_domains < init_data[0]**init_data[1]:
         matrix, domain_coordinates, number_domains = growth_3D(matrix, init_data, domain_coordinates, number_domains)
         
     t = t+1 #increase time after each step
-    table_filled_fraction[counter_table] = [t,number_domains/init_data[0]**init_data[1]] #update filling fraction
+    table_filled_fraction[counter_table] = [t,number_domains/init_data[0]**init_data[1]] #update filled fraction
     counter_table = counter_table+1
     print("Progession: ",round(number_domains/init_data[0]**init_data[1]*100,2),"%" )
     
