@@ -11,7 +11,7 @@ This kind of process can be nicely described by Johnson-Mehl-Avrami-Kolmogorov k
 where **eta** is the fraction of transformed domain, **n** is a parameter that depends on dimensionality (1D/2D/3D) and **k** is a constant. 
 Further information on JMAK kinetics can be found in [1], [2].
 
-## Usage
+## System and model
 
 The user is asked to provide four different parameters: 
 matrix dimension N, dimensionality of the process n, nucleation rate J, growth velocity R. The phase transition is modelled as happening on a matrix that will be as big as N, 
