@@ -4,6 +4,7 @@
 from start import *
 from controls import *
 from JMAK import *
+from data_analysis import *
 
 ###############################################################################
 #INITIALIZATION OF PARAMETERS
@@ -23,7 +24,7 @@ number_domains = 0 #domains counter
 table_filled_fraction = np.zeros((init_data[0]**init_data[1],2)) #table with filled fraction in function of time
 counter_table = 0 #counter for filling previous table
 
-while number_domains < init_data[0]**init_data[1]:
+while number_domains/init_data[0]**init_data[1] < 1:
     
     #2D case
     if init_data[1] == 2:
@@ -38,10 +39,12 @@ while number_domains < init_data[0]**init_data[1]:
     t = t+1 #increase time after each step
     table_filled_fraction[counter_table] = [t,number_domains/init_data[0]**init_data[1]] #update filled fraction
     counter_table = counter_table+1
-    print("Progession: ",round(number_domains/init_data[0]**init_data[1]*100,2),"%" )
-    
-    
-        
+    print("Progression: ",round(number_domains/init_data[0]**init_data[1]*100,2),"%" )
+
+###############################################################################
+#DATA ANALYSIS AND PLOT
+###############################################################################
+plot_JMAK(table_filled_fraction,counter_table)
     
        
    
