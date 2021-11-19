@@ -39,12 +39,13 @@ def nucleation_3D(matrix, params, positions_nuclei, num_nuclei):
     return [internal_matrix, positions_nuclei, num_nuclei]
 
 def growth_2D(matrix, params, positions_nuclei, num_nuclei):
+    if is_all_full(matrix,params):
+        return [matrix, positions_nuclei, num_nuclei]
     for q in range(0,num_nuclei):
         for w in range(-params[3], params[3]+1):
             for s in range(-params[3], params[3]+1):
                 x = positions_nuclei[q,0] + w
                 y = positions_nuclei[q,1] + s
-                
                 #controls for segmentantion fault
                 if x>params[0]:
                     x = abs(params[0]-x)
@@ -62,6 +63,8 @@ def growth_2D(matrix, params, positions_nuclei, num_nuclei):
     return [matrix, positions_nuclei, num_nuclei]
 
 def growth_3D(matrix, params, positions_nuclei, num_nuclei):
+    if is_all_full(matrix,params):
+        return [matrix, positions_nuclei, num_nuclei]
     for q in range(0,num_nuclei):
         for w in range(-params[3], params[3]+1):
             for s in range(-params[3], params[3]+1):
@@ -70,7 +73,6 @@ def growth_3D(matrix, params, positions_nuclei, num_nuclei):
                     x = positions_nuclei[q,0] + w
                     y = positions_nuclei[q,1] + s
                     z = positions_nuclei[q,2] + t
-                
                 #controls for segmentantion fault
                 if x>params[0]:
                     x = abs(params[0]-x)
