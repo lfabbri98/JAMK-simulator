@@ -46,7 +46,7 @@ while number_domains/init_data[0]**init_data[1] < 1:
 ###############################################################################
 #DATA ANALYSIS AND PLOT
 ###############################################################################
-plot_JMAK(table_filled_fraction,counter_table)
+plot_JMAK(table_filled_fraction,counter_table,init_data)
     
        
    
