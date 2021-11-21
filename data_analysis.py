@@ -26,7 +26,10 @@ def plot_JMAK(table,counter_table,params,name):
     X = np.log(table[:,0])
     Y = np.log(-np.log(1-table[:,1]))
     popt, pcov = curve_fit(poly1,X,Y)
-    print("Fitted with linear model A+B*x \n A= "+str(popt[0])+"\n B= "+str(popt[1]))
+    print("Fitted with linear model A+B*x")
+    errors = np.sqrt(np.diag(pcov))
+    print("A = "+str(popt[0])+" +- "+str(errors[0]))
+    print("B = "+str(popt[1])+" +- "+str(errors[1]))
 
 
 def plot_matrix(table_positions, params, fraction,name):
