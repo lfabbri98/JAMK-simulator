@@ -10,7 +10,7 @@ from data_analysis import *
 #INITIALIZATION OF PARAMETERS
 ###############################################################################
 
-init_data = init_simulation() #open initialization prompt
+init_data, name = init_simulation() #open initialization prompt
 for x in range(4):
     init_data[x] = int(init_data[x]) #convert all strings to int
 
@@ -45,8 +45,9 @@ while number_domains/init_data[0]**init_data[1] < 1:
 
 ###############################################################################
 #DATA ANALYSIS AND PLOT
-###############################################################################
-plot_JMAK(table_filled_fraction,counter_table,init_data)
+###############################################################################    
+    plot_matrix(domain_coordinates, init_data,number_domains/init_data[0]**init_data[1],name)
+plot_JMAK(table_filled_fraction,counter_table,init_data,name)
     
        
    

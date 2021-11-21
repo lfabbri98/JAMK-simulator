@@ -32,9 +32,9 @@ a plot of JMAK kinetic is saved into the folder *Outputs*, named with date and t
 
 Output files will be saved in two different ways:
 
-- *date+JMAK.png* for JMAK kinetics
+- *name-JMAK.png* for JMAK kinetics
 
-- *date-MATRIX-fillin_percentage.png* for screenshots of matrix taken during execution
+- *name-MATRIX-fillin_percentage.png* for screenshots of matrix taken during execution
 
 ## Structure of the project
 

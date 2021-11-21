@@ -18,9 +18,10 @@ def init_simulation():
         n=input("n: ")
         J=input("J: ")
         R=input("R: ")
+        name = input("Name of simulation: ")
         if not input_control([N,n,J,R]):
             break
-    return [N,n,J,R]
+    return [N,n,J,R],name
 
     
 """Function that creates the matrix depending on input paramter n"""
