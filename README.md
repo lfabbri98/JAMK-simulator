@@ -71,7 +71,7 @@ This project is divided into many files:
 
 [1]	L. Fabbri, “Simulazione e analisi della formazione di idruri metallici.”, *Thesis*, 2020.
 
-[2]	R. W. Balluffi, S. M. Allen, and W. C. Carter, Kinetics of Materials. Wiley - Interscience, 2005.
+[2]	R. W. Balluffi, S. M. Allen, and W. C. Carter, "Kinetics of Materials.", Wiley - Interscience, 2005.
 
 
 
