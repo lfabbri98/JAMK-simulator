@@ -14,7 +14,7 @@ def plot_JMAK(table,counter_table,params,name):
     plt.ylabel("$\eta$")
     plt.grid();
     plt.title("Simulated JMAK kinetic for N="+str(params[0])+", n="+str(params[1])+", J="+str(params[2])+", R="+str(params[3]))
-    plt.savefig('./Outputs/'+name+'-JMAK.png')
+    plt.savefig('./Outputs/'+name+'/'+name+'-JMAK.png')
 
 def plot_matrix(table_positions, params, fraction,name):
     if params[1] == 3:
@@ -27,4 +27,4 @@ def plot_matrix(table_positions, params, fraction,name):
         
     frac = round(fraction*100) 
     plt.title("Matrix at "+str(frac)+" %")
-    plt.savefig('./Outputs/'+name+'-MATRIX-'+str(frac)+'.png')
+    plt.savefig('./Outputs/'+name+'/'+name+'-MATRIX-'+str(frac)+'.png')

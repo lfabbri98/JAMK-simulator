@@ -5,6 +5,7 @@ from start import *
 from controls import *
 from JMAK import *
 from data_analysis import *
+import os
 
 ###############################################################################
 #INITIALIZATION OF PARAMETERS
@@ -17,12 +18,24 @@ for x in range(4):
 ###############################################################################      
 #SIMULATION
 ###############################################################################
+try:
+    os.makedirs("Outputs")
+except FileExistsError:
+    # directory already exists
+    pass
 matrix = system_creation(init_data)
 t = 0 #time counter
 domain_coordinates = generate_pos_table(init_data) #table with coordinates of all points
 number_domains = 0 #domains counter
 table_filled_fraction = np.zeros((init_data[0]**init_data[1],2)) #table with filled fraction in function of time
 counter_table = 0 #counter for filling previous table
+
+try:
+    os.makedirs("Outputs/"+name)
+except FileExistsError:
+    # directory already exists
+    pass
+
 
 while number_domains/init_data[0]**init_data[1] < 1:
     
