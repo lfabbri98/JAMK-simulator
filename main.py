@@ -39,7 +39,7 @@ except FileExistsError:
     pass
 
 
-while number_domains/init_data[0]**init_data[1] < 1:
+while number_domains/init_data[0]**init_data[1] <= 0.99:
     
     #2D case
     if init_data[1] == 2:
