@@ -36,8 +36,6 @@ To work, this program requires the following packages:
 
 - scipy
 
-- random
-
 ## Usage
 
 To start the program simply run file **main.py**.
