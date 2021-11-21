@@ -10,7 +10,6 @@ def plot_JMAK(table,counter_table,params,name):
     #import of table and date to save figure
     table = table[table[:,1]!=0]
     table = table[table[:,1]!=1]
-    assert len(table) == counter_table -1
     #plotting
     plt.figure()
     plt.plot(table[:,0],table[:,1])
