@@ -11,6 +11,12 @@ This kind of process can be nicely described by Johnson-Mehl-Avrami-Kolmogorov k
 where **eta** is the fraction of transformed domain, **n** is a parameter that depends on dimensionality (1D/2D/3D) and **k** is a constant. 
 Further information on JMAK kinetics can be found in [1], [2].
 
+To test simulated results it's possible to perform a fit using the following relation:
+
+![eq2](https://github.com/lfabbri98/Images/blob/main/CodeCogsEqn%20(2).png)
+
+where d can be found as the angular coefficient of fit.
+
 ## System and model
 
 The user is asked to provide four different parameters: 
@@ -33,6 +39,8 @@ Output files will be saved in two different ways in the specific folder *Outputs
 - *name-JMAK.png* for JMAK kinetics
 
 - *name-MATRIX-fillin_percentage.png* for screenshots of matrix taken during execution
+
+Moreover parameters of fit are plotted in the console.
 
 ## Structure of the project
 
