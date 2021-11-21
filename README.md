@@ -26,6 +26,18 @@ with a single hydrogen atom. At each instant of time J new domains will be creat
 (domains’ positions will be generated according to a uniform distribution) and already present domains will grow in each direction with velocity R. So if, for example, R=2 then each domain will grow of 2 hydrogen atoms in each direction per unit time. 
 The case considered is only the one with constant R and constant nucleation rate J. This means that expected d is d = 1+n.
 
+## Dependencies
+
+To work, this program requires the following packages:
+
+- numpy
+
+- matplotlib
+
+- scipy
+
+- random
+
 ## Usage
 
 To start the program simply run file **main.py**.
