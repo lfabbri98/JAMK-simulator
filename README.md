@@ -26,7 +26,7 @@ To start the program simply run file **main.py**.
 **Attention! All parameters must be integers. The program is provided of a control on user input. Be aware that non-integer parameters have no physical meaning.**
 
 After the simulation (it can require much time, depending on your input paramters)
-a plot of JMAK kinetic is saved into the folder *Outputs*.
+a plot of JMAK kinetic is saved into the folder *Outputs* with also some screenshots of the matrix, taken during the execution.
 
 Output files will be saved in two different ways in the specific folder *Outputs/name*:
 
