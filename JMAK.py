@@ -3,7 +3,9 @@ import random
 from controls import *
 
 
+
 def nucleation_2D(matrix, params, positions_nuclei, num_nuclei):
+    random.seed(1)
     internal_matrix = matrix
     num_cycled=0
     while num_cycled < params[1]:
@@ -21,6 +23,7 @@ def nucleation_2D(matrix, params, positions_nuclei, num_nuclei):
     return [internal_matrix, positions_nuclei, num_nuclei]
 
 def nucleation_3D(matrix, params, positions_nuclei, num_nuclei):
+    random.seed(1)
     internal_matrix = matrix
     num_cycled=0
     while num_cycled < params[1]:
