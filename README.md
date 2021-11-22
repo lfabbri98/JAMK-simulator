@@ -58,9 +58,9 @@ This project is divided into many files:
 
 - **main.py** : starting file, it contains the instructions to run all the simulation.
 
-- **start.py** : contains the function *init_simulation* that initializes the parameters through a graphical user interface. It also contains the function *system_creation* which is responsible for the creation of the matrix.
+- **start.py** : contains the function *init_simulation* that initializes the parameters through a line command interface. It also contains the function *system_creation* which is responsible for the creation of the matrix.
 
-- **controls.py** : it contains many control functions such as *input_control* and *is_all_full*.
+- **controls.py** : it contains control functions such as *input_control* and *is_all_full*.
 
 - **JMAK.py** : file which contains the heart of the program. There are all the functions related to nucleation of new domines and growth of existent ones.
 
