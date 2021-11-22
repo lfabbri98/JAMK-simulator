@@ -2,6 +2,13 @@ import numpy as np
 import random 
 from controls import *
 
+"""
+Note:
+    params[0] = N
+    params[1] = n
+    params[2] = J
+    params[3] = R
+"""
 
 
 def nucleation_2D(matrix, params, positions_nuclei, num_nuclei):
