@@ -15,7 +15,7 @@ def nucleation_2D(matrix, params, positions_nuclei, num_nuclei):
     random.seed(1)
     internal_matrix = matrix
     num_cycled=0
-    while num_cycled < params[1]:
+    while num_cycled < params[2]:
         new_position_1 = random.randint(0,params[0]-1)
         new_position_2 = random.randint(0,params[0]-1)
         if internal_matrix[new_position_1, new_position_2] == 1:
@@ -27,13 +27,13 @@ def nucleation_2D(matrix, params, positions_nuclei, num_nuclei):
         num_cycled = num_cycled+1
         num_nuclei = num_nuclei+1
 
-    return [internal_matrix, positions_nuclei, num_nuclei]
+    return internal_matrix, positions_nuclei, num_nuclei
 
 def nucleation_3D(matrix, params, positions_nuclei, num_nuclei):
     random.seed(1)
     internal_matrix = matrix
     num_cycled=0
-    while num_cycled < params[1]:
+    while num_cycled < params[2]:
         new_position_1 = random.randint(0,params[0]-1)
         new_position_2 = random.randint(0,params[0]-1)
         new_position_3 = random.randint(0,params[0]-1)
@@ -46,7 +46,7 @@ def nucleation_3D(matrix, params, positions_nuclei, num_nuclei):
         num_cycled = num_cycled+1
         num_nuclei = num_nuclei+1
 
-    return [internal_matrix, positions_nuclei, num_nuclei]
+    return internal_matrix, positions_nuclei, num_nuclei
 
 def growth_2D(matrix, params, positions_nuclei, num_nuclei):
     if is_all_full(matrix,params):
@@ -70,7 +70,7 @@ def growth_2D(matrix, params, positions_nuclei, num_nuclei):
                     matrix[int(x)-1,int(y)-1] = 1
                     positions_nuclei[num_nuclei] = [x,y]
                     num_nuclei = num_nuclei+1
-    return [matrix, positions_nuclei, num_nuclei]
+    return matrix, positions_nuclei, num_nuclei
 
 def growth_3D(matrix, params, positions_nuclei, num_nuclei):
     if is_all_full(matrix,params):
@@ -101,7 +101,7 @@ def growth_3D(matrix, params, positions_nuclei, num_nuclei):
                     matrix[int(x)-1,int(y)-1,int(z)-1] = 1
                     positions_nuclei[num_nuclei] = [x,y,z]
                     num_nuclei = num_nuclei+1
-    return [matrix, positions_nuclei, num_nuclei]
+    return matrix, positions_nuclei, num_nuclei
 
 
  
