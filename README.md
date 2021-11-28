@@ -34,6 +34,10 @@ Dependencies for this program can be found in file *dependencies.txt*.
 
 ## Usage
 
+Before starting the simulation be sure to fill configuration file *config.txt*
+which is store in the same folder of the program. Be also sure to have installed all
+dependencies.
+
 To start the program simply run file **main.py**.
 **Attention! All parameters must be integers. The program is provided of a control on user input. Be aware that non-integer parameters have no physical meaning.**
 
