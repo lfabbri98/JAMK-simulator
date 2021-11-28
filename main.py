@@ -1,12 +1,10 @@
-#This is main file, starting point
-
 #including libraries
-from controls import *
-from JMAK import *
-from data_analysis import *
+import JMAK
 import os
 import configparser
 import sys
+import start
+import numpy as np
 
 
 ###############################################################################
@@ -27,12 +25,15 @@ Description of parameters:
     - R : number of new nuclei that are growth in all directions around each nucleus
     
     - name : name of simulation, will be used for outputs
+    
+    - seed : seed which will be used to initialize random number generation seed
 """
-N = config.get('settings','N')
-dim = config.get('settings','dimension')
-J = config.get('settings','J')
-R = config.get('settings','R')
-name = config.get('name','simName')
+N = config.get('settings','SideLength')
+dim = config.get('settings','Dimension')
+J = config.get('settings','NucleationRate')
+R = config.get('settings','GrowthVelocity')
+seed = config.get('generator','Seed')
+name = config.get('name','SimulationName')
 
 #Controls on input 
 try:
@@ -40,6 +41,7 @@ try:
     dim = int(dim)
     J = int(J)
     R = int(R)
+    seed = int(seed)
 except:
     #error if paramters are not integer
     print("You inserted some non integer parameters.")
@@ -57,52 +59,48 @@ except FileExistsError:
     # directory already exists
     pass
 
-"""
-###############################################################################      
-#SIMULATION
-###############################################################################
-matrix = system_creation(init_data)
-t = 0 #time counter
-domain_coordinates = generate_pos_table(init_data) #table with coordinates of all points
-number_domains = 0 #domains counter
-table_filled_fraction = np.zeros((init_data[0]**init_data[1],2)) #table with filled fraction in function of time
-counter_table = 0 #counter for filling previous table
 
-#Creation of output directory for each simulation
+###############################################################################      
+#INITIALIZATION OF SYSTEM 
+###############################################################################
+matrix = start.system_creation(N,dim)
+t = 0 #time counter
+domain_coordinates = start.generate_pos_table(N,dim) #table with coordinates of all points
+number_domains = 0 #domains counter
+table_filled_fraction = np.zeros((N**dim,2)) #table with filled fraction in function of time
+counter_table = 0 #counter for filling previous table
+filled_fraction=0
+
+#Creation of output directory for each simulation name
 try:
     os.makedirs("Outputs/"+name)
 except FileExistsError:
     # directory already exists
     pass
 
+###############################################################################      
+#NUCLEATION AND GROWTH
+###############################################################################
 
-while number_domains/init_data[0]**init_data[1] <= 0.99:
+while filled_fraction <= 0.99:
+    if matrix.all()==1:
+        break
+    if J < N**dim - J: #this expression avoid to have less free sites than J
+        matrix, domain_coordinates, number_domains = JMAK.nucleation(matrix,N,dim,J,domain_coordinates,number_domains,seed)
     
-    #2D case
-    if init_data[1] == 2:
-        #this expression avoid to have less free sites than J, otherwise we have a problem!
-        if init_data[2] < init_data[0]**init_data[1] - number_domains:
-            matrix, domain_coordinates, number_domains = nucleation_2D(matrix, init_data, domain_coordinates, number_domains)
-        matrix, domain_coordinates, number_domains = growth_2D(matrix, init_data, domain_coordinates, number_domains)
-        
-    #3D case
-    elif init_data[1] == 3:
-        if init_data[2] < init_data[0]**init_data[1] - number_domains:
-            matrix, domain_coordinates, number_domains = nucleation_3D(matrix, init_data, domain_coordinates, number_domains)
-        matrix, domain_coordinates, number_domains = growth_3D(matrix, init_data, domain_coordinates, number_domains)
-        
+    filled_fraction = number_domains/N**dim
     t = t+1 #increase time after each step
-    table_filled_fraction[counter_table] = [t,number_domains/init_data[0]**init_data[1]] #update filled fraction
+    table_filled_fraction[counter_table] = [t,filled_fraction] #update filled fraction
     counter_table = counter_table+1
-    print("Progression: ",round(number_domains/init_data[0]**init_data[1]*100,2),"%" )
-
+    print("Progression: ",round(filled_fraction*100,2),"%" )
+    
+"""
 ###############################################################################
 #DATA ANALYSIS AND PLOT
 ###############################################################################   
     #this firs plotting expression is inside the while 
     plot_matrix(domain_coordinates, init_data,number_domains/init_data[0]**init_data[1],name)
 plot_JMAK(table_filled_fraction,counter_table,init_data,name)
-    
-    """   
+"""
    
     
