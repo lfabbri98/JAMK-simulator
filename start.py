@@ -1,44 +1,42 @@
-"""This is the function that initializes all the parameters for simulation
-as well as the type of simulation
-"""
-from controls import *
 import numpy as np
+  
+def system_creation(side_length):
+    """  
+    Parameters
+    ----------
+    side_length : int
+        lenght of matrix side that will be created, has name N in main
 
-"""Initialization of simulation, requestion of parameters from user"""
+    Returns
+    -------
+    Created matrix with all positions empty (=0)
 
-def init_simulation():
-    N=0
-    n=0
-    J=0
-    R=0
-    while True:
-        print("Please provide following parameters: N, n, J, R")
-        print("Choose only n=2 or n=3")
-        N= input("N: ")    
-        n=input("n: ")
-        J=input("J: ")
-        R=input("R: ")
-        name = input("Name of simulation: ")
-        if not input_control([N,n,J,R]):
-            break
-    return [N,n,J,R],name
-
-    
-"""Function that creates the matrix depending on input paramter n"""
-def system_creation(params):
-    
-   N = params[0]
+    """
    
-   if params[1] == 2:
-       matrix = np.zeros((N,N))
-   if params[1] == 3:
-       matrix = np.zeros((N,N,N))
+    if side_length == 2:
+       matrix = np.zeros((side_length,side_length), dtype = int)
+    if side_length == 3:
+       matrix = np.zeros((side_length,side_length,side_length), dtype = int)
    
-   return matrix 
+    return matrix 
 
 
-"""Generates the table to store all positions about nuclei"""
-def generate_pos_table(params):
-    table = np.zeros((params[0]**params[1],params[1]))
+def generate_pos_table(side_length, dimension):
+    """
+
+    Parameters
+    ----------
+    side_length : int
+        length of matrix side, used because there will be maximum side_lenght^dim nuclei
+    dimension : int
+        dimension of the process (dim in main)
+
+    Returns
+    -------
+    table : matrix of int
+        matrix where coordinates of nuclei in matrix will be stored
+
+    """
+    table = np.zeros((side_length**dimension,dimension), dtype = int)
     return table
         
