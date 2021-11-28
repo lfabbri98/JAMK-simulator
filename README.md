@@ -19,8 +19,10 @@ where d can be found as the angular coefficient of fit.
 
 ## System and model
 
-The user is asked to provide four different parameters: 
-matrix dimension N, dimensionality of the process n, nucleation rate J, growth velocity R. The phase transition is modelled as happening on a matrix that will be as big as N, 
+The user is asked to provide different parameters writing them in the file *config.txt*: 
+matrix dimension N, dimensionality of the process n, nucleation rate J and growth velocity R are
+relative to physical properties of the simulations. Moreover the user should provide a name and a generation seed.
+ The phase transition is modelled as happening on a matrix with side length N (matrix dimesion), 
 depending on dimensionality n. For example, if one chooses N=100 and n=2 then a bidimensional matrix with 100x100 cells will be created. Each cell can be empty or filled 
 with a single hydrogen atom. At each instant of time J new domains will be created randomly inside the matrix 
 (domains’ positions will be generated according to a uniform distribution) and already present domains will grow in each direction with velocity R. So if, for example, R=2 then each domain will grow of 2 hydrogen atoms in each direction per unit time. 
@@ -28,13 +30,7 @@ The case considered is only the one with constant R and constant nucleation rate
 
 ## Dependencies
 
-To work, this program requires the following packages:
-
-- numpy
-
-- matplotlib
-
-- scipy
+Dependencies for this program can be found in file *dependencies.txt*.
 
 ## Usage
 
@@ -44,11 +40,18 @@ To start the program simply run file **main.py**.
 After the simulation (it can require much time, depending on your input paramters)
 a plot of JMAK kinetic is saved into the folder *Outputs* with also some screenshots of the matrix, taken during the execution.
 
+## Outputs
+
+Output plots are created with library *matplotlib* and two functions are dedicated to
+produce visive outcomes of simulation.
+
 Output files will be saved in two different ways in the specific folder *Outputs/name*:
 
 - *name-JMAK.png* for JMAK kinetics
 
 - *name-MATRIX-fillin_percentage.png* for screenshots of matrix taken during execution
+
+The string *name* is the same which must be provided into configuration file.
 
 Moreover parameters of fit are plotted in the console.
 
@@ -58,9 +61,7 @@ This project is divided into many files:
 
 - **main.py** : starting file, it contains the instructions to run all the simulation.
 
-- **start.py** : contains the function *init_simulation* that initializes the parameters through a line command interface. It also contains the function *system_creation* which is responsible for the creation of the matrix.
-
-- **controls.py** : it contains control functions such as *input_control* and *is_all_full*.
+- **start.py** : contains the function *system_creation* and *generate_pos_table* which respectively creates the matrix and the table where all nuclei positions will be stored.
 
 - **JMAK.py** : file which contains the heart of the program. There are all the functions related to nucleation of new domines and growth of existent ones.
 
