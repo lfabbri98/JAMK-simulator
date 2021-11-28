@@ -1,19 +1,54 @@
 #This is main file, starting point
 
 #including libraries
-from start import *
 from controls import *
 from JMAK import *
 from data_analysis import *
 import os
+import configparser
+import sys
+
 
 ###############################################################################
 #INITIALIZATION OF PARAMETERS
 ###############################################################################
+config = configparser.ConfigParser()
+config.read('config.txt')
 
-init_data, name = init_simulation() #open initialization prompt
-for x in range(4):
-    init_data[x] = int(init_data[x]) #convert all strings to int
+"""
+Description of parameters:
+    
+    - N : length of the side of the matrix
+    
+    - dim : dimensionality of the process, can be 2 or 3
+    
+    - J : number of new nuclei that are generated inside the matrix for each time step
+    
+    - R : number of new nuclei that are growth in all directions around each nucleus
+    
+    - name : name of simulation, will be used for outputs
+"""
+N = config.get('settings','N')
+dim = config.get('settings','dimension')
+J = config.get('settings','J')
+R = config.get('settings','R')
+name = config.get('name','simName')
+
+#Controls on input 
+try:
+    N = int(N)
+    dim = int(dim)
+    J = int(J)
+    R = int(R)
+except:
+    #error if paramters are not integer
+    print("You inserted some non integer parameters.")
+    sys.exit()
+
+if not (dim==2 or dim==3):
+    #error is dim is different from 2 or 3
+    print("Dimensionality should be 2 or 3!")
+    sys.exit()
 
 #Creation of general output directory
 try:
@@ -21,6 +56,8 @@ try:
 except FileExistsError:
     # directory already exists
     pass
+
+"""
 ###############################################################################      
 #SIMULATION
 ###############################################################################
@@ -66,6 +103,6 @@ while number_domains/init_data[0]**init_data[1] <= 0.99:
     plot_matrix(domain_coordinates, init_data,number_domains/init_data[0]**init_data[1],name)
 plot_JMAK(table_filled_fraction,counter_table,init_data,name)
     
-       
+    """   
    
     
