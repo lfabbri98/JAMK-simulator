@@ -1,7 +1,7 @@
 import numpy as np
 from numpy import random
 
-def nucleation(matrix, N, dim, J, seed, positions_nuclei, num_nuclei):
+def nucleation(matrix, N, dim, J, positions_nuclei, num_nuclei = 0, seed = 1):
     """
 
     Parameters
@@ -37,9 +37,10 @@ def nucleation(matrix, N, dim, J, seed, positions_nuclei, num_nuclei):
     num_cycled=0
     while num_cycled < J:
         new_position = random.randint(0,N,dim)
-        if matrix[tuple(new_position)] == 1: 
+        new_position = tuple(new_position)
+        if matrix[new_position] == 1: #if domain is already full, skip it
             continue
-        matrix[tuple(new_position)] = 1
+        matrix[new_position] = 1
         positions_nuclei[num_nuclei] = new_position
         num_cycled = num_cycled+1
         num_nuclei = num_nuclei+1
