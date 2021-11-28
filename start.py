@@ -1,11 +1,13 @@
 import numpy as np
   
-def system_creation(side_length):
+def system_creation(side_length,dim):
     """  
     Parameters
     ----------
     side_length : int
         lenght of matrix side that will be created, has name N in main
+    dim : int
+        dimensionality of system (2D or 3D)
 
     Returns
     -------
@@ -13,9 +15,9 @@ def system_creation(side_length):
 
     """
    
-    if side_length == 2:
+    if dim == 2:
        matrix = np.zeros((side_length,side_length), dtype = int)
-    if side_length == 3:
+    if dim == 3:
        matrix = np.zeros((side_length,side_length,side_length), dtype = int)
    
     return matrix 
