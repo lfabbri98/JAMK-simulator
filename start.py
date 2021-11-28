@@ -11,7 +11,7 @@ def system_creation(side_length,dim):
 
     Returns
     -------
-    Created matrix with all positions empty (=0)
+    matrix : matrix of int with all positions empty (=0)
 
     """
    
