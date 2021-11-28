@@ -1,0 +1,8 @@
+[settings]
+N = 100
+dimension = 2
+J = 5
+R = 2
+
+[name]
+simName = prova
