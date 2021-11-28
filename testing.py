@@ -6,6 +6,20 @@ import start
 
 @given (dim=st.integers(2,3),J=st.integers(1,50))
 def test_nucleation_correct_number_new_nuclei(dim,J):
+    """
+    Tests is the nucleation of a new domine leads to a correct increment of 
+    number of nuclei in the system.
+    
+    Parameters
+    ----------
+    dim : int
+        try both 2D and 3D cases
+    J : int
+        nucleation rate can sweep up to 50, which is very high value and
+        not common
+
+
+    """
     N=100
     num_nuc_before = 0
     pos = start.generate_pos_table(N, dim)
@@ -16,6 +30,16 @@ def test_nucleation_correct_number_new_nuclei(dim,J):
 
 @given(J=st.integers(1,30))
 def test_correct_add_table(J):
+    """
+    Tests if repeated nucleations lead to a correct increment in table of
+    positions. 20 repetitions are tested for different J on a wide range.
+
+    Parameters
+    ----------
+    J : int
+        nucleation rate on a wide range
+
+    """
     N = 100
     dim = 2
     num_nuc = 0
