@@ -71,7 +71,7 @@ def test_correct_add_table():
         #Total number of nuclei after full process must be equal to the # of repetitions times nucleation rate
         assert num_nuc == (J-1)*J
         
-def test_correct_return():
+def test_correct_return_nucleation():
     """
     Tests if function nucleation returns variables of the correct type and
     dimension
@@ -79,7 +79,6 @@ def test_correct_return():
     N = 100
     dim = 2
     J = 2
-    R = 3
     matrix = start.system_creation(N, dim)
     pos = start.generate_pos_table(N, dim)
     #perform nucleation
@@ -119,6 +118,27 @@ def test_correct_number_growth_center():
         choose_values = np.union1d(choose_values_1,choose_values_2)
         #similarly also position table should be updated with the same number of lines
         assert len(pos[choose_values]) == 1+4*R
-        
-    
+
+def test_correct_return_growth():
+    """
+    Tests if function growth returns correct values for dimensions and type.
+
+    """    
+    N = 100
+    dim = 2
+    J = 2
+    R = 3
+    matrix = start.system_creation(N, dim)
+    pos = start.generate_pos_table(N, dim)
+    #perform nucleation
+    matrix, pos, num_nuclei = JMAK.nucleation(matrix, N, dim, J, pos)
+    #perform growth
+    matrix, pos, num_nuclei = JMAK.growth(matrix, N, dim, R, pos, num_nuclei)
+    #controls on correct dimension
+    assert np.size(matrix) == N**dim
+    assert np.size(pos) == N**dim * dim
+    #controls on type
+    assert isinstance(matrix, np.ndarray) == True
+    assert isinstance(pos, np.ndarray) == True
+    assert isinstance(num_nuclei, int) == True
     
