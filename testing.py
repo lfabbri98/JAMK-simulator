@@ -122,6 +122,8 @@ def test_correct_number_growth_center():
 def test_correct_return_growth():
     """
     Tests if function growth returns correct values for dimensions and type.
+    Very similar to correspondent test for nucleation, this is implemented to 
+    avoid multiple failings from the same test.
 
     """    
     N = 100
@@ -141,4 +143,21 @@ def test_correct_return_growth():
     assert isinstance(matrix, np.ndarray) == True
     assert isinstance(pos, np.ndarray) == True
     assert isinstance(num_nuclei, int) == True
+    
+def test_growth_circolarity():
+    """
+    Tests if a growth process circularity is correct. Basically the matrix is 
+    thought to be connected like in a toroidal geometry. So adding a nucleus in
+    last position + 1 should create that nucleus in position 1
+    """
+    N = 10
+    dim = 2
+    R = 1
+    num_nuclei = 1
+    pos = start.generate_pos_table(N, dim)
+    matrix = start.system_creation(N, dim)
+    matrix[5,9] = 1
+    pos[0] = [5,9]
+    matrix, pos, num_nuclei = JMAK.growth(matrix, N, dim, R, pos, num_nuclei)
+    assert matrix[5,9] == 1
     
