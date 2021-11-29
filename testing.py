@@ -18,7 +18,7 @@ def test_matrix_changed_nucleation():
         pos = start.generate_pos_table(N, dim)
         m_after, pos, num_nuc = JMAK.nucleation(m_before,N,dim,J,pos,num_nuc)
         print(m_after)
-        assert m_before.all() ==0 #control, matrix before should be empty
+        assert m_before.all() ==0 #matrix before should be empty
         assert m_after.any()!=0 #error if empty matrix remains empty after nucleation
         assert num_nuc == J #test if number of nuclei is increased by J
             
@@ -48,34 +48,30 @@ def test_nucleation_correct_number_new_nuclei(dim,J,num_nuc_before):
     assert num_nuc == num_nuc_before+J #number of nuclei after nucleation must be increased by J
     num_nuc_before = num_nuc
 
-@given(J=st.integers(1,30))
-def test_correct_add_table(J):
+
+def test_correct_add_table():
     """
     Tests if repeated nucleations lead to a correct increment in table of
     positions. 20 repetitions are tested for different J on a wide range.
 
-    Parameters
-    ----------
-    J : int
-        nucleation rate on a wide range
-
     """
-    N = 100
-    dim = 2
-    num_nuc = 0
-    pos = start.generate_pos_table(N, dim)
-    m = start.system_creation(N, dim)
-    for i in range(1,J):
-        m, pos, num_nuc = JMAK.nucleation(m,N,dim,J,pos,num_nuc)
-        #Choose only non-empty lines
-        choose_values_1 = np.where(pos[:,0]!=0)
-        choose_values_2 = np.where(pos[:,1]!=0)
-        choose_values = np.union1d(choose_values_1,choose_values_2)
-        #The number of nuclei after each step must be equal to non-empty lines in table of positions
-        assert num_nuc == len(pos[choose_values])
-    #Total number of nuclei after full process must be equal to the # of repetitions times nucleation rate
-    assert num_nuc == (J-1)*J
-    
+    for J in range(0,30):
+        N = 100
+        dim = 2
+        num_nuc = 0
+        pos = start.generate_pos_table(N, dim)
+        m = start.system_creation(N, dim)
+        for i in range(1,J):
+            m, pos, num_nuc = JMAK.nucleation(m,N,dim,J,pos,num_nuc)
+            #Choose only non-empty lines
+            choose_values_1 = np.where(pos[:,0]!=0)
+            choose_values_2 = np.where(pos[:,1]!=0)
+            choose_values = np.union1d(choose_values_1,choose_values_2)
+            #The number of nuclei after each step must be equal to non-empty lines in table of positions
+            assert num_nuc == len(pos[choose_values])
+        #Total number of nuclei after full process must be equal to the # of repetitions times nucleation rate
+        assert num_nuc == (J-1)*J
+
 
     
     
