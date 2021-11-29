@@ -5,6 +5,7 @@ import configparser
 import sys
 import start
 import numpy as np
+import data_analysis as dt
 
 
 ###############################################################################
@@ -44,12 +45,12 @@ try:
     seed = int(seed)
 except:
     #error if paramters are not integer
-    print("You inserted some non integer parameters.")
+    print("You inserted some non integer parameters. Please modify configuration file.")
     sys.exit()
 
 if not (dim==2 or dim==3):
     #error is dim is different from 2 or 3
-    print("Dimensionality should be 2 or 3!")
+    print("Dimensionality should be 2 or 3! Please modify configuration file.")
     sys.exit()
 
 #Creation of general output directory
@@ -100,7 +101,7 @@ while filled_fraction <= 0.99:
 ###############################################################################   
     #this firs plotting expression is inside the while 
     plot_matrix(domain_coordinates, init_data,number_domains/init_data[0]**init_data[1],name)
-plot_JMAK(table_filled_fraction,counter_table,init_data,name)
+
 """
-   
+dt.plot_JMAK(table_filled_fraction,N,dim,J,R,name) 
     
