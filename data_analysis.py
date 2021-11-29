@@ -49,17 +49,21 @@ def plot_JMAK(table,N,dim,J,R,name):
     #take a 20% tolerance from center of kinetic
     right_side_data = int(median_table + 20/100 * len(table))
     left_side_data = int(median_table - 20/100 * len(table))
-    #defining fit array from equations of kinetic
-    X = np.log(table[left_side_data:right_side_data,0])
-    Y = np.log(-np.log(1-table[left_side_data:right_side_data,1]))
-    #fit central part with a linear function as it should be 
-    popt, pcov = curve_fit(poly1,X,Y)
-    #print parameters of fit in console
-    print("Fitted with linear model A+B*x")
-    errors = np.sqrt(np.diag(pcov))
-    print("A = "+str(popt[0])+" +- "+str(errors[0]))
-    print("B = "+str(popt[1])+" +- "+str(errors[1]))
-
+    
+    try:
+        #defining fit array from equations of kinetic
+        X = np.log(table[left_side_data:right_side_data,0])
+        Y = np.log(-np.log(1-table[left_side_data:right_side_data,1]))
+        #fit central part with a linear function as it should be 
+        popt, pcov = curve_fit(poly1,X,Y)
+        #print parameters of fit in console
+        print("Fitted with linear model A+B*x")
+        errors = np.sqrt(np.diag(pcov))
+        print("A = "+str(popt[0])+" +- "+str(errors[0]))
+        print("B = "+str(popt[1])+" +- "+str(errors[1]))
+    except:
+        print("Combination of parameters lead to a very borderline case. It has not been possible to fit data because simulation was too fast.")
+        pass
 
 def plot_matrix(table_positions, dim, fraction,name):
     """

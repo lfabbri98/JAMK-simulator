@@ -44,6 +44,21 @@ To start the program simply run file **main.py**.
 After the simulation (it can require much time, depending on your input paramters)
 a plot of JMAK kinetic is saved into the folder *Outputs* with also some screenshots of the matrix, taken during the execution.
 
+Since simulation depends on parameters, some unusual combination of them
+might lead to meaningless results. In that case the program warns the user that
+fitting procedure could not be performed. The solution to this is to restart simulation
+with better parameters. Some generale guidelines for choice of parameters are:
+
+- Avoid too small matrices, mostly if matrix is too small with respect other parameters. 
+For example N=25, n=2, J=10, R=20 will surely lead to an error. Common parameters are for instance
+N=100, n=2, J=5, R=3. 
+
+- Avoid in general too high J or R because they are not representative of reality.
+
+- High N for 3D simulation is okay but computational times are much greater
+than 2D case.
+
+
 ## Outputs
 
 Output plots are created with library *matplotlib* and two functions are dedicated to
