@@ -70,6 +70,9 @@ This project is divided into many files:
 - **JMAK.py** : file which contains the heart of the program. There are all the functions related to nucleation of new domines and growth of existent ones.
 
 - **data_analysis.py** : contains all the function to analyze output data of the program and to plot data
+
+- **testing.py** : contains routine tests on the main functions of project
+
 ## References
 
 [1]	L. Fabbri, “Simulazione e analisi della formazione di idruri metallici.”, *Thesis*, 2020.
