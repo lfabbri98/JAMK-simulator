@@ -43,7 +43,7 @@ try:
     J = int(J)
     R = int(R)
     seed = int(seed)
-except:
+except ValueError:
     #error if paramters are not integer
     print("You inserted some non integer parameters. Please modify configuration file.")
     sys.exit()
