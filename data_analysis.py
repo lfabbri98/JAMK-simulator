@@ -60,18 +60,39 @@ def plot_JMAK(table,N,dim,J,R,name):
     print("A = "+str(popt[0])+" +- "+str(errors[0]))
     print("B = "+str(popt[1])+" +- "+str(errors[1]))
 
-"""
-def plot_matrix(table_positions, params, fraction,name):
-    if params[1] == 3:
+
+def plot_matrix(table_positions, dim, fraction,name):
+    """
+    Function that plots and saves a screenshot of the matrix 
+
+    Parameters
+    ----------
+    table_positions : array of int
+        table with positions of all nuclei
+    dim : int
+        dimensionality of the process
+    fraction : float
+        filling fraction of matrix, goes from 0 to 1
+    name : str
+        string which corresponds to name of simulation
+
+    Graphical output
+    -------
+    A plot produced with matplotlib is saved for different percentages. Maximum 
+    one for each percent.
+
+    """
+    if dim == 3:
         fig = plt.figure()
         ax = fig.add_subplot(projection='3d')
         ax.scatter(table_positions[:,0],table_positions[:,1], table_positions[:,2],color='blue')
     
-    if params[1] == 2:       
+    if dim == 2:       
         plt.scatter(table_positions[:,0],table_positions[:,1],color='blue')
-        
+    
+    #fraction is rounded at 0 digits so figures with same percentage are overwritten
+    #leading to a single figure for every % at most.
     frac = round(fraction*100) 
     plt.title("Matrix at "+str(frac)+" %")
     plt.savefig('./Outputs/'+name+'/'+name+'-MATRIX-'+str(frac)+'.png')
     plt.close()
-"""
