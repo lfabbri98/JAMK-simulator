@@ -20,9 +20,9 @@ where d can be found as the angular coefficient of fit.
 ## System and model
 
 The user is asked to provide different parameters writing them in the file *config.txt*: 
-matrix dimension N, dimensionality of the process n, nucleation rate J and growth velocity R are
+matrix dimension (side length) N, dimensionality of the process n, nucleation rate J and growth velocity R are
 relative to physical properties of the simulations. Moreover the user should provide a name and a generation seed.
- The phase transition is modelled as happening on a matrix with side length N (matrix dimesion), 
+ The phase transition is modelled as happening on a matrix with side length N (side length), 
 depending on dimensionality n. For example, if one chooses N=100 and n=2 then a bidimensional matrix with 100x100 cells will be created. Each cell can be empty or filled 
 with a single hydrogen atom. At each instant of time J new domains will be created randomly inside the matrix 
 (domains’ positions will be generated according to a uniform distribution) and already present domains will grow in each direction with velocity R. So if, for example, R=2 then each domain will grow of 2 hydrogen atoms in each direction per unit time. 
@@ -47,7 +47,7 @@ a plot of JMAK kinetic is saved into the folder *Outputs* with also some screens
 Since simulation depends on parameters, some unusual combination of them
 might lead to meaningless results. In that case the program warns the user that
 fitting procedure could not be performed. The solution to this is to restart simulation
-with better parameters. Some generale guidelines for choice of parameters are:
+with better parameters. Some general guidelines for choice of parameters are:
 
 - Avoid too small matrices, mostly if matrix is too small with respect other parameters. 
 For example N=25, n=2, J=10, R=20 will surely lead to an error. Common parameters are for instance
@@ -93,9 +93,9 @@ This project is divided into many files:
 In this figure it's possible to see a typical output for both a 2D and 3D matrix and 
 of a JMAK simulated kinetic.
 
-![JMAK](https://github.com/lfabbri98/Images/blob/main/ppp-JMAK.png)
-![matrix_2D](https://github.com/lfabbri98/Images/blob/main/ppp-MATRIX-31.png)
-![matrix_3D](https://github.com/lfabbri98/Images/blob/main/ppp3-MATRIX-6.png)
+![JMAK](https://github.com/lfabbri98/Images/blob/main/prova_filo-JMAK.png)
+![matrix_2D](https://github.com/lfabbri98/Images/blob/main/prova_filo-MATRIX-32.png)
+![matrix_3D](https://github.com/lfabbri98/Images/blob/main/prova_filo_3D-MATRIX-15.png)
 
 ## References
 
