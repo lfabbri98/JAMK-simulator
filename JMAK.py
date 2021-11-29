@@ -90,10 +90,10 @@ def growth(matrix,N,dim,R,positions_nuclei, num_nuclei):
         #select current position of single nucleus to grow around it
         current_position = positions_nuclei[x]
         change_position = current_position
-        #repeat the step for each value between -R and R
-        for j in range(-R,R+1):
-            #repeat for all dimensions
-            for i in range(0,dim):
+        #repeat the step for all dimensions
+        for i in range(0,dim):
+            #repeat for each value between -R and R
+            for j in range(-R,R+1):
                 change_position = np.array(change_position)
                 change_position[i] = (current_position[i] + j)%N
                 change_position = tuple(change_position)
