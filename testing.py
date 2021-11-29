@@ -18,6 +18,7 @@ def test_matrix_changed_nucleation():
         pos = start.generate_pos_table(N, dim)
         m_after, pos, num_nuc = JMAK.nucleation(m_before,N,dim,J,pos,num_nuc)
         print(m_after)
+        assert m_before.all() ==0 #control, matrix before should be empty
         assert m_after.any()!=0 #error if empty matrix remains empty after nucleation
         assert num_nuc == J #test if number of nuclei is increased by J
             
@@ -25,7 +26,7 @@ def test_matrix_changed_nucleation():
 @given (dim=st.integers(2,3),J=st.integers(1,50),num_nuc_before=st.integers(0,100))
 def test_nucleation_correct_number_new_nuclei(dim,J,num_nuc_before):
     """
-    Tests is the nucleation of a new domine leads to a correct increment of 
+    Tests if the nucleation of a new domine leads to a correct increment of 
     number of nuclei in the system.
     
     Parameters
@@ -34,15 +35,13 @@ def test_nucleation_correct_number_new_nuclei(dim,J,num_nuc_before):
         try both 2D and 3D cases
     J : int
         nucleation rate can sweep up to 50, which is very high value and
-        not common
+        almost a limit case
     num_nuc_before : int
         starting number of nuclei, to try if an initial number different from 0
-        make any difference
-
+        makes any difference
 
     """
     N=100
-    #num_nuc_before = 0
     pos = start.generate_pos_table(N, dim)
     m = start.system_creation(N, dim)
     m, pos, num_nuc = JMAK.nucleation(m,N,dim,J,pos,num_nuc_before)
