@@ -83,7 +83,7 @@ except FileExistsError:
 #NUCLEATION AND GROWTH
 ###############################################################################
 
-while filled_fraction <= 0.99:
+while filled_fraction <= 0.999:
     if matrix.all()==1:
         break
     if J < N**dim - J: #this expression avoid to have less free sites than J
