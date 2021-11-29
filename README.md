@@ -73,6 +73,15 @@ This project is divided into many files:
 
 - **testing.py** : contains routine tests on the main functions of project
 
+## Example of outputs
+
+In this figure it's possible to see a typical output for both a 2D and 3D matrix and 
+of a JMAK simulated kinetic.
+
+![JMAK](https://github.com/lfabbri98/Images/blob/main/ppp-JMAK.png)
+![matrix_2D](https://github.com/lfabbri98/Images/blob/main/ppp-MATRIX-31.png)
+![matrix_3D](https://github.com/lfabbri98/Images/blob/main/ppp3-MATRIX-6.png)
+
 ## References
 
 [1]	L. Fabbri, “Simulazione e analisi della formazione di idruri metallici.”, *Thesis*, 2020.
