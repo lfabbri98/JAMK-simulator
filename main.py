@@ -88,6 +88,7 @@ while filled_fraction <= 0.99:
         break
     if J < N**dim - J: #this expression avoid to have less free sites than J
         matrix, domain_coordinates, number_domains = JMAK.nucleation(matrix,N,dim,J,domain_coordinates,number_domains,seed)
+    matrix, domain_coordinates, number_domains = JMAK.growth(matrix,N,dim,R,domain_coordinates,number_domains)
     
     filled_fraction = number_domains/N**dim
     t = t+1 #increase time after each step
@@ -95,13 +96,12 @@ while filled_fraction <= 0.99:
     counter_table = counter_table+1
     print("Progression: ",round(filled_fraction*100,2),"%" )
     
-"""
+
 ###############################################################################
 #DATA ANALYSIS AND PLOT
 ###############################################################################   
     #this firs plotting expression is inside the while 
-    plot_matrix(domain_coordinates, init_data,number_domains/init_data[0]**init_data[1],name)
+    dt.plot_matrix(domain_coordinates, dim, filled_fraction,name)
 
-"""
 dt.plot_JMAK(table_filled_fraction,N,dim,J,R,name) 
     
