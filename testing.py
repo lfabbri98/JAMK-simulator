@@ -17,7 +17,6 @@ def test_matrix_changed_nucleation():
         m_before = start.system_creation(N, dim)
         pos = start.generate_pos_table(N, dim)
         m_after, pos, num_nuc = JMAK.nucleation(m_before,N,dim,J,pos,num_nuc)
-        print(m_after)
         assert m_before.all() ==0 #matrix before should be empty
         assert m_after.any()!=0 #error if empty matrix remains empty after nucleation
         assert num_nuc == J #test if number of nuclei is increased by J
@@ -52,7 +51,7 @@ def test_nucleation_correct_number_new_nuclei(dim,J,num_nuc_before):
 def test_correct_add_table():
     """
     Tests if repeated nucleations lead to a correct increment in table of
-    positions. 20 repetitions are tested for different J on a wide range.
+    positions. 30 repetitions are tested for different J on a wide range.
 
     """
     for J in range(0,30):
@@ -71,8 +70,55 @@ def test_correct_add_table():
             assert num_nuc == len(pos[choose_values])
         #Total number of nuclei after full process must be equal to the # of repetitions times nucleation rate
         assert num_nuc == (J-1)*J
+        
+def test_correct_return():
+    """
+    Tests if function nucleation returns variables of the correct type and
+    dimension
+    """
+    N = 100
+    dim = 2
+    J = 2
+    R = 3
+    matrix = start.system_creation(N, dim)
+    pos = start.generate_pos_table(N, dim)
+    #perform nucleation
+    matrix, pos, num_nuclei = JMAK.nucleation(matrix, N, dim, J, pos)
+    #controls on correct dimension
+    assert np.size(matrix) == N**dim
+    assert np.size(pos) == N**dim * dim
+    #controls on type
+    assert isinstance(matrix, np.ndarray) == True
+    assert isinstance(pos, np.ndarray) == True
+    assert isinstance(num_nuclei, int) == True
 
+def test_correct_number_growth_center():
+    """
+    Function that tests if growth from a single domain in the center of matrix
+    leads to a correct increment in number of nuclei. Tests also if increment in
+    position table is correct
 
-    
+    """
+    N = 100
+    dim = 2
+    #do the test for different values of growth velocity R
+    for R in range(1,10):
+        num_nuclei = 1
+        pos = start.generate_pos_table(N, dim)
+        matrix = start.system_creation(N, dim)
+        #insert a single domain in the center of matrix
+        matrix[50,50] = 1
+        #update table with domain
+        pos[0] = [50,50]
+        matrix, pos, num_nuclei = JMAK.growth(matrix, N, dim, R, pos, num_nuclei)
+        #since growth is in 2 directions after it we should have 4*R new domains
+        assert num_nuclei == 1+4*R
+        #select only non empty lines from position tables
+        choose_values_1 = np.where(pos[:,0]!=0)
+        choose_values_2 = np.where(pos[:,1]!=0)
+        choose_values = np.union1d(choose_values_1,choose_values_2)
+        #similarly also position table should be updated with the same number of lines
+        assert len(pos[choose_values]) == 1+4*R
+        
     
     
