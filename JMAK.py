@@ -3,7 +3,10 @@ from numpy import random
 
 def nucleation(matrix, N, dim, J, positions_nuclei, num_nuclei = 0, seed = 1):
     """
-
+    
+    This function performs a nucleation cycle on the matrix, updating all
+    relative parameters such as the number of nuclei and table of positions
+    
     Parameters
     ----------
     matrix : array of int
@@ -36,73 +39,71 @@ def nucleation(matrix, N, dim, J, positions_nuclei, num_nuclei = 0, seed = 1):
     random.seed(seed)
     num_cycled=0
     while num_cycled < J:
+        #generate randomly a position to nucleate in the matrix
         new_position = random.randint(0,N,dim)
-        new_position = tuple(new_position)
+        new_position = tuple(new_position) #cast to tuple to do a correct indexing 
         if matrix[new_position] == 1: #if domain is already full, skip it
             continue
+        #if position is empty, fill it
         matrix[new_position] = 1
+        #add position to nuclei list
         positions_nuclei[num_nuclei] = new_position
         num_cycled = num_cycled+1
         num_nuclei = num_nuclei+1
 
     return matrix, positions_nuclei, num_nuclei
 
-"""
-def growth_2D(matrix, params, positions_nuclei, num_nuclei):
-    if is_all_full(matrix,params):
-        return [matrix, positions_nuclei, num_nuclei]
-    for q in range(0,num_nuclei):
-        for w in range(-params[3], params[3]+1):
-            for s in range(-params[3], params[3]+1):
-                x = positions_nuclei[q,0] + w
-                y = positions_nuclei[q,1] + s
-                #controls for segmentantion fault
-                if x>params[0]:
-                    x = abs(params[0]-x)
-                if x<0:
-                    x = params[0] - abs(1-x)
-                if y>params[0]:
-                    y = abs(params[0]-y)
-                if y<0:
-                    y = params[0] - abs(1-y)    
-                
-                if matrix[int(x)-1,int(y)-1] == 0:
-                    matrix[int(x)-1,int(y)-1] = 1
-                    positions_nuclei[num_nuclei] = [x,y]
-                    num_nuclei = num_nuclei+1
-    return matrix, positions_nuclei, num_nuclei
+def growth(matrix,N,dim,R,positions_nuclei, num_nuclei):
+    """
+    Function that performs growth process of domains depending on growth 
+    velocity R
 
-def growth_3D(matrix, params, positions_nuclei, num_nuclei):
-    if is_all_full(matrix,params):
-        return [matrix, positions_nuclei, num_nuclei]
-    for q in range(0,num_nuclei):
-        for w in range(-params[3], params[3]+1):
-            for s in range(-params[3], params[3]+1):
-                for t in range(-params[3], params[3]+1):
+    Parameters
+    ----------
+    matrix : array of int
+        matrix of the system
+    N : int
+        side length of matrix, used to avoid seg. fault
+    dim : int
+        dimensionality of the process (2D/3D)
+    R : int
+        growth velocity represents how many new nuclei are added around a
+        selected domain each time step
+    positions_nuclei : array of int
+        table with positions into matrix of all nuclei
+    num_nuclei : int
+        number of total present nuclei
+
+    Returns
+    -------
+    matrix : array of int
+        matrix of the system after growth process
+    positions_nuclei : array of int
+        table with positions of nuclei after growth, new nuclei have been added
+    num_nuclei : int
+        number of new nuclei after growth
+
+    """
+    
+    #repeat growth of domain for each nucleus in matrix
+    for x in range(0,num_nuclei):
+        #select current position of single nucleus to grow around it
+        current_position = positions_nuclei[x]
+        change_position = current_position
+        #repeat the step for each value between -R and R
+        for j in range(-R,R+1):
+            #repeat for all dimensions
+            for i in range(0,dim):
+                change_position = np.array(change_position)
+                change_position[i] = (current_position[i] + j)%N
+                change_position = tuple(change_position)
+                #if cell is empty then fill it and add change_position to position_nuclei table
+                if matrix[change_position] == 0:
+                    matrix[change_position] = 1
+                    positions_nuclei[num_nuclei] = change_position
+                    num_nuclei = num_nuclei+1
                     
-                    x = positions_nuclei[q,0] + w
-                    y = positions_nuclei[q,1] + s
-                    z = positions_nuclei[q,2] + t
-                    #controls for segmentantion fault
-                    if x>params[0]:
-                        x = abs(params[0]-x)
-                    if x<0:
-                        x = params[0] - abs(1-x)
-                    if y>params[0]:
-                        y = abs(params[0]-y)
-                    if y<0:
-                        y = params[0] - abs(1-y)  
-                    if z>params[0]:
-                        z = abs(params[0]-z)
-                    if z<0:
-                        z = params[0] - abs(1-z)  
-                
-                    if matrix[int(x)-1,int(y)-1, int(z)-1] == 0:
-                        matrix[int(x)-1,int(y)-1,int(z)-1] = 1
-                        positions_nuclei[num_nuclei] = [x,y,z]
-                        num_nuclei = num_nuclei+1
     return matrix, positions_nuclei, num_nuclei
-"""
 
  
     
