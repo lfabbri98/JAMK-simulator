@@ -45,7 +45,7 @@ def generate_pos_table(side_length, dimension):
     table = np.zeros((side_length**dimension,dimension), dtype = int)
     return table
 
-def import_paramters():
+def import_parameters():
     """
     Function that initialize parameters of simulation using library configparser.
     Parameters are taken from file config.txt and controls on input type are 

@@ -6,7 +6,7 @@ import start
 
 def test_input():
     
-    N,dim,J,R,seed,name = start.import_paramters()
+    N,dim,J,R,seed,name = start.import_parameters()
     assert isinstance(N, int)
     assert isinstance(dim, int)
     assert isinstance(J, int)

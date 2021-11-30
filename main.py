@@ -29,7 +29,7 @@ Description of parameters:
 """
 
 #initialization of parameters in input through dedicated function
-N,dim,J,R,seed,name = start.import_paramters()
+N,dim,J,R,seed,name = start.import_parameters()
 
 #initialization of internal parameters
 matrix = start.system_creation(N,dim)
