@@ -4,6 +4,16 @@ import numpy as np
 import JMAK
 import start
 
+def test_input():
+    
+    N,dim,J,R,seed,name = start.import_paramters()
+    assert isinstance(N, int)
+    assert isinstance(dim, int)
+    assert isinstance(J, int)
+    assert isinstance(R, int)
+    assert isinstance(seed, int)
+    assert isinstance(name, str)
+    
 def test_matrix_changed_nucleation():
     """
     Tests if a nucleation process effectively changes the matrix and if J nuclei
@@ -182,4 +192,3 @@ def test_full_JMAK():
     choose_values_2 = np.where(pos[:,1]!=0)
     choose_values = np.union1d(choose_values_1,choose_values_2)
     assert len(pos[choose_values]) == num_nuclei    
-        

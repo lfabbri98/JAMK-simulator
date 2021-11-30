@@ -12,10 +12,6 @@ import data_analysis as dt
 #INITIALIZATION OF PARAMETERS
 ###############################################################################
 
-#call configparser to import parameters from file config.txt
-config = configparser.ConfigParser()
-config.read('config.txt')
-
 """
 Description of parameters:
     
@@ -32,41 +28,10 @@ Description of parameters:
     - seed : seed which will be used to initialize random number generation seed
 """
 
-N = config.get('settings','SideLength')
-dim = config.get('settings','Dimension')
-J = config.get('settings','NucleationRate')
-R = config.get('settings','GrowthVelocity')
-seed = config.get('generator','Seed')
-name = config.get('name','SimulationName')
+#initialization of parameters in input through dedicated function
+N,dim,J,R,seed,name = start.import_paramters()
 
-#Controls on input 
-try:
-    N = int(N)
-    dim = int(dim)
-    J = int(J)
-    R = int(R)
-    seed = int(seed)
-except ValueError:
-    #error if paramters are not integer
-    print("You inserted some non integer parameters. Please modify configuration file.")
-    sys.exit()
-
-if not (dim==2 or dim==3):
-    #error is dim is different from 2 or 3
-    print("Dimensionality should be 2 or 3! Please modify configuration file.")
-    sys.exit()
-    
-#Creation of general output directory
-try:
-    os.makedirs("Outputs")
-except FileExistsError:
-    # directory already exists
-    pass
-
-
-###############################################################################      
-#INITIALIZATION OF SYSTEM 
-###############################################################################
+#initialization of internal parameters
 matrix = start.system_creation(N,dim)
 t = 0 #time counter
 domain_coordinates = start.generate_pos_table(N,dim) #table with coordinates of all points
