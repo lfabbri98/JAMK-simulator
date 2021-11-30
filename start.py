@@ -66,6 +66,11 @@ def import_parameters():
         custom seed for random numbers generator
     name : str
         name of simulation, it will be used to name store folder
+        
+    Raise
+    -------
+    Returns an error if one or some parameters are not of the correct type or
+    if dimension is different from accepted values dim=2 and dim=3.
 
     """
 
