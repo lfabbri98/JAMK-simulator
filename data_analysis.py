@@ -3,6 +3,24 @@ import numpy as np
 from scipy.optimize import curve_fit
 
 def poly1(x,A,B):
+    """
+    Function used as fitting function for linear fit
+
+    Parameters
+    ----------
+    x : float
+        variable of linear function
+    A : float
+        intercept
+    B : float
+        slope
+
+    Returns
+    -------
+    float
+        linear function evulated in point x
+
+    """
     return A+B*x
 
 def plot_JMAK(table,N,dim,J,R,name):
@@ -27,7 +45,7 @@ def plot_JMAK(table,N,dim,J,R,name):
 
     Graphical output
     -------
-    Plot of JMAK kinetic and save in relative folder; fit parameters on console
+    Plot of JMAK kinetic and save in relative folder; fit parameters shown on console
 
     """
     #selecting only values different from 0 and 1 not to have problems with log
