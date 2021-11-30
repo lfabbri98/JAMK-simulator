@@ -5,6 +5,11 @@ import JMAK
 import start
 
 def test_input():
+    """
+    Tests if returning type of function import_parameters are correct
+
+
+    """
     
     N,dim,J,R,seed,name = start.import_parameters()
     assert isinstance(N, int)
