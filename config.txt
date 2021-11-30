@@ -1,11 +1,15 @@
+# In first section you should put parameters of simulation
+# In order the are N,n,J,R
 [settings]
-SideLength = 100
-Dimension = 3
-NucleationRate = 3
-GrowthVelocity = 1
+SideLength = 100	
+Dimension = 2		
+NucleationRate = 1	
+GrowthVelocity = 1	
 
+# Name of simulation that will be used in creating output folder
 [name]
-SimulationName = prova
+SimulationName = trial
 
+# Custom seed for random number generator
 [generator]
-Seed = 1
+Seed = 55362
