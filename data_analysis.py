@@ -52,7 +52,7 @@ def plot_JMAK(table,N,dim,J,R,name):
     table = table[table[:,1]!=0]
     table = table[table[:,1]!=1]
     #plotting
-    plt.figure()
+    plt.figure(figsize=(6,6))
     plt.plot(table[:,0],table[:,1])
     plt.xlabel("Time (steps)")
     plt.ylabel("$\eta$")
@@ -105,11 +105,12 @@ def plot_matrix(table_positions, dim, fraction,name):
 
     """
     if dim == 3:
-        fig = plt.figure()
+        fig = plt.figure(figsize=(6,6))
         ax = fig.add_subplot(projection='3d')
         ax.scatter(table_positions[:,0],table_positions[:,1], table_positions[:,2],color='blue')
     
-    if dim == 2:       
+    if dim == 2:  
+        fig = plt.figure(figsize=(6,6))
         plt.scatter(table_positions[:,0],table_positions[:,1],color='blue')
     
     #fraction is rounded at 0 digits so figures with same percentage are overwritten
