@@ -1,8 +1,6 @@
 #including libraries
 import JMAK
 import os
-import configparser
-import sys
 import start
 import numpy as np
 import data_analysis as dt
