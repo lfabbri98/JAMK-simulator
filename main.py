@@ -11,6 +11,8 @@ import data_analysis as dt
 ###############################################################################
 #INITIALIZATION OF PARAMETERS
 ###############################################################################
+
+#call configparser to import parameters from file config.txt
 config = configparser.ConfigParser()
 config.read('config.txt')
 
@@ -29,6 +31,7 @@ Description of parameters:
     
     - seed : seed which will be used to initialize random number generation seed
 """
+
 N = config.get('settings','SideLength')
 dim = config.get('settings','Dimension')
 J = config.get('settings','NucleationRate')
@@ -52,7 +55,7 @@ if not (dim==2 or dim==3):
     #error is dim is different from 2 or 3
     print("Dimensionality should be 2 or 3! Please modify configuration file.")
     sys.exit()
-
+    
 #Creation of general output directory
 try:
     os.makedirs("Outputs")
@@ -84,8 +87,7 @@ except FileExistsError:
 ###############################################################################
 
 while filled_fraction <= 0.999:
-    if matrix.all()==1:
-        break
+
     if J < N**dim - J: #this expression avoid to have less free sites than J
         matrix, domain_coordinates, number_domains = JMAK.nucleation(matrix,N,dim,J,domain_coordinates,number_domains,seed)
     matrix, domain_coordinates, number_domains = JMAK.growth(matrix,N,dim,R,domain_coordinates,number_domains)
@@ -100,7 +102,9 @@ while filled_fraction <= 0.999:
 ###############################################################################
 #DATA ANALYSIS AND PLOT
 ###############################################################################   
-    #this firs plotting expression is inside the while 
+
+    #this first plotting expression is inside the while to plot matrix screenshot
+    #many times
     dt.plot_matrix(domain_coordinates, dim, filled_fraction,name)
 
 dt.plot_JMAK(table_filled_fraction,N,dim,J,R,name) 
