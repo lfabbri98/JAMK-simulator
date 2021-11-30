@@ -118,6 +118,7 @@ def test_correct_number_growth_center():
         choose_values = np.union1d(choose_values_1,choose_values_2)
         #similarly also position table should be updated with the same number of lines
         assert len(pos[choose_values]) == 1+4*R
+        assert len(pos[choose_values]) == num_nuclei
 
 def test_correct_return_growth():
     """
@@ -156,8 +157,29 @@ def test_growth_circolarity():
     num_nuclei = 1
     pos = start.generate_pos_table(N, dim)
     matrix = start.system_creation(N, dim)
-    matrix[5,9] = 1
+    matrix[5,N-1] = 1
     pos[0] = [5,9]
     matrix, pos, num_nuclei = JMAK.growth(matrix, N, dim, R, pos, num_nuclei)
-    assert matrix[5,9] == 1
+    assert matrix[5,0] == 1
     
+def test_full_JMAK():
+    """
+    Tests if number of nuclei and length of non-empty pos table are the same 
+    after some cycles of full JMAK process (nucleation +  growth)
+
+    """
+    N = 100
+    dim = 2
+    J = 2
+    R = 3
+    matrix = start.system_creation(N, dim)
+    pos = start.generate_pos_table(N, dim)
+    num_nuclei = 0
+    for i in range(5):
+        matrix, pos, num_nuclei = JMAK.nucleation(matrix, N, dim, J, pos, num_nuclei)
+        matrix, pos, num_nuclei = JMAK.growth(matrix, N, dim, R, pos, num_nuclei)
+    choose_values_1 = np.where(pos[:,0]!=0)
+    choose_values_2 = np.where(pos[:,1]!=0)
+    choose_values = np.union1d(choose_values_1,choose_values_2)
+    assert len(pos[choose_values]) == num_nuclei    
+        
