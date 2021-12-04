@@ -33,7 +33,7 @@ def test_matrix_changed_nucleation():
         pos = start.generate_pos_table(N, dim)
         m_after, pos, num_nuc = JMAK.nucleation(m_before,N,dim,J,pos,num_nuc)
         assert m_before.all() ==0 #matrix before should be empty
-        assert m_after.any()!=0 #error if empty matrix remains empty after nucleation
+        assert m_after.any() #error if empty matrix remains empty after nucleation
         assert num_nuc == J #test if number of nuclei is increased by J
             
     
